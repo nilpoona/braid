@@ -1,6 +1,6 @@
 const test = require('ava');
 const sinon = require('sinon');
-const createTask = require('../src/task'); 
+const createTask = require('../lib/task'); 
 
 const base = {
     message: 'message',
