@@ -1,6 +1,7 @@
 class Task {
-    constructor(data) {
+    constructor(data, index) {
         this.data = data;
+        this.no = index;
     }
 
     get hasMessage() {
@@ -17,6 +18,10 @@ class Task {
 
     get hasValidate() {
         return this.data.hasOwnProperty('validate');
+    }
+
+    get name() {
+        return this.data.name || `task${this.no}`;
     }
 
     get message() {
@@ -56,8 +61,8 @@ class Task {
     }
 }
 
-const createTask = (data) => {
-    return new Task(data);
+const createTask = (data, index) => {
+    return new Task(data, index);
 };
 
 module.exports = createTask;
