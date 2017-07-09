@@ -18,7 +18,14 @@ const executor = function* (tasks) {
             result = yield (() => {
                 return new Promise((resolve) => {
                     rl.on('line', (str) => {
-                        resolve(task.data.task(str.trim(), result));
+                        const validationResult = task.validate(str);
+                        if (validationResult) {
+                            resolve(task.data.task(str.trim(), result));
+                            return;
+                        }
+                        task.echoValidateErrorMessage();
+                        rl.prompt();
+                        return;
                     });
                 });
             })();
@@ -47,6 +54,12 @@ const createBraid = () => {
         },
         {
             stdin: true,
+            validate: {
+                logic: (str) => {
+                    return [1, 2, 3].indexOf(parseInt(str, 10)) !== -1; 
+                },
+                message: '1,2,3のいずれかを入力してね',
+            },
             task: (str, before) => console.log(str, before + 1),
         },
         {

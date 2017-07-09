@@ -15,8 +15,24 @@ class Task {
         return this.data.hasOwnProperty('task');
     }
 
+    get hasValidate() {
+        return this.data.hasOwnProperty('validate');
+    }
+
     get message() {
         return this.data.message;
+    }
+
+    validate(data) {
+        if (this.hasValidate) {
+            return this.data.validate.logic(data);
+        }
+
+        return true;
+    }
+
+    echoValidateErrorMessage() {
+        console.log(this.data.validate.message || 'validation error.');
     }
 
     echo() {
