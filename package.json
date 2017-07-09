@@ -1,9 +1,13 @@
 {
   "name": "braid",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "co": "^4.6.0"
+  },
+  "devDependencies": {
+    "ava": "^0.20.0",
+    "sinon": "^2.3.6"
   }
 }
