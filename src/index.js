@@ -1,6 +1,35 @@
-const EventEmitter = require('events');
+const co = require('co');
 const createTask = require('./task');
-const creaeCli = require('./cli');
+const readline = require('readline');
+
+const createCli = () => {
+    return readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+    });
+};
+
+const executor = function* (tasks) {
+    let result;
+    for (let task of tasks) {
+        if (task.hasStdin) {
+            let rl = createCli();
+            rl.prompt();
+            result = yield (() => {
+                return new Promise((resolve) => {
+                    rl.on('line', (str) => {
+                        resolve(task.data.task(str.trim(), result));
+                    });
+                });
+            })();
+            rl.close();
+        } else {
+            result = yield task.exec(result);
+        }
+    }
+
+    return result;
+}
 
 const createBraid = () => {
     const taskData = [
@@ -15,20 +44,33 @@ const createBraid = () => {
         },
         {
             message: '入力せよ',
-            stdin: true,
-            task: (str) => console.log(str),
         },
+        {
+            stdin: true,
+            task: (str, before) => console.log(str, before + 1),
+        },
+        {
+            message: 'もう一回',
+        },
+        {
+            stdin: true,
+            task: (str, before) => Promise.resolve('unko'),
+        },
+
     ];
 
 
-    const emitter = new EventEmitter();
-    const cli = creaeCli(emitter);
-
     const tasks = taskData.map((data) => {
-        return createTask(data, emitter);
+        return createTask(data);
     });
 
-    console.log(tasks);
+    return co(executor(tasks))
+    .then((value) => {
+        return value;
+    }, (err) => {
+      console.error(err.stack);
+    });
 };
 
-createBraid();
+createBraid()
+.then(r => console.log(r))
