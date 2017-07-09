@@ -9,40 +9,6 @@ const createCli = () => {
     });
 };
 
-const taskData = [
-    {
-        message: 'foobar',
-    },
-    {
-        task: () => 1,
-    },
-    {
-        task: (n) => n + 1,
-    },
-    {
-        message: '入力せよ',
-    },
-    {
-        name: 'num',
-        stdin: true,
-        validate: {
-            logic: (str) => {
-                return [1, 2, 3].indexOf(parseInt(str, 10)) !== -1; 
-            },
-            message: '1,2,3のいずれかを入力してね',
-        },
-        task: (str, before) => console.log(str, before + 1),
-    },
-    {
-        message: 'もう一回',
-    },
-    {
-        name: 'str',
-        stdin: true,
-        task: (str, before) => Promise.resolve('bar'),
-    },
-
-];
 const createExecutor = () => {
     const taskResults = {};
 
@@ -96,7 +62,4 @@ const createExecutor = () => {
     };
 };
 
-const executor = createExecutor();
-
-executor.exec(taskData)
-.then(r => console.log(r))
+module.exports = createExecutor;
