@@ -54,7 +54,7 @@ const createBraid = () => {
         },
         {
             stdin: true,
-            task: (str, before) => Promise.resolve('unko'),
+            task: (str, before) => Promise.resolve('bar'),
         },
 
     ];

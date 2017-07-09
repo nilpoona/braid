@@ -19,10 +19,14 @@ class Task {
         return this.data.message;
     }
 
+    echo() {
+        console.log(this.data.message);
+    }
+
     exec(before = null) {
         return new Promise((resolve) => {
             if (this.hasMessage) {
-                console.log(this.data.message);
+                this.echo();
             }
             
             if (this.hasTask && !this.hasStdin) {
