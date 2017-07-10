@@ -1,6 +1,6 @@
 {
   "name": "braid",
-  "description": "A tool that makes it easy to create command line tools",
+  "description": "Interactive command line tool generator",
   "keywords": ["cli", "readline", "node.js"],
   "scripts": {
     "test": "./node_modules/.bin/ava test/*.js"
