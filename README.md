@@ -19,9 +19,19 @@ const taskData = [
       logic: (str) => [1, 2, 3, 4].indexOf(parseInt(str, 10)) !== -1, //Input value verification logic
       message: 'Please enter a number from 1 to 4',
     },
-    task: (str) => return parseInt(str, 10) + 1,
+    task: (str) => parseInt(str, 10) + 1,
+  },
+  {
+    name: 'number to string',
+    task: (before) => `number: ${before}`,
   },
 ];
+
+executor.exec(taskData)
+.then((data) => {
+  // {'enter number': n + 1, 'number to string': 'number: ${n}'};
+  console.log(data);
+});
 ```
 
 ## Support
