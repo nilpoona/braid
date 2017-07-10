@@ -3,7 +3,7 @@
 ## Usage
 
 ```javascript
-const createExecutor = require('braid');
+const createExecutor = require('braid-cli');
 const executor = createExecutor();
 
 const taskData = [
