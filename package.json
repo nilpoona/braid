@@ -6,6 +6,10 @@
     "test": "./node_modules/.bin/ava test/*.js"
   },
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YutakaHorikawa/braid"
+  },
   "bugs": {
     "email": "snuffysmile.toolate@gmail.com"
   },
