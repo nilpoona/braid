@@ -34,5 +34,19 @@ executor.exec(taskData)
 });
 ```
 
+## Task Data
+```javascript
+{
+  name: task name
+  stdin: Flag to allow standard input
+  message: String to be displayed in standard output
+  validate: {
+    logic: (str) => Function for verifying the value of standard input
+    message: String to be displayed at validation error
+  },
+  task: () => A function that describes the processing you want to execute. If the stdin flag is true, it will be executed after it is entered. In that case the value entered in the first argument is passed. Otherwise, the result of the previous task is passed.
+}
+```
+
 ## Support
 node.js 6
