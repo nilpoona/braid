@@ -13,7 +13,7 @@
   "bugs": {
     "email": "snuffysmile.toolate@gmail.com"
   },
-  "main": "lib/index.js",
+  "main": "lib/braid.js",
   "files": "lib",
   "license": "MIT",
   "os" : ["darwin", "linux"],
