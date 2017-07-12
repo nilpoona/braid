@@ -1,11 +1,11 @@
 {
-  "name": "braid",
+  "name": "braid-cli",
   "description": "Interactive command line tool generator",
   "keywords": ["cli", "readline", "node.js"],
   "scripts": {
     "test": "./node_modules/.bin/ava test/*.js"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/YutakaHorikawa/braid"
