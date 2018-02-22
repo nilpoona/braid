@@ -17,9 +17,6 @@
   "files": "lib",
   "license": "MIT",
   "os" : ["darwin", "linux"],
-  "dependencies": {
-    "co": "^4.6.0"
-  },
   "devDependencies": {
     "ava": "^0.20.0",
     "sinon": "^2.3.6"
