@@ -1,7 +1,11 @@
 {
   "name": "braid-cli",
   "description": "Interactive command line tool generator",
-  "keywords": ["cli", "readline", "node.js"],
+  "keywords": [
+    "cli",
+    "readline",
+    "node.js"
+  ],
   "scripts": {
     "test": "./node_modules/.bin/ava test/*.js"
   },
@@ -16,9 +20,15 @@
   "main": "lib/braid.js",
   "files": "lib",
   "license": "MIT",
-  "os" : ["darwin", "linux"],
+  "os": [
+    "darwin",
+    "linux"
+  ],
   "devDependencies": {
     "ava": "^0.20.0",
     "sinon": "^2.3.6"
+  },
+  "dependencies": {
+    "rxjs": "^5.5.6"
   }
 }
