@@ -62,4 +62,4 @@ braid.exec()
 ```
 
 ## Support
-node.js 6
+node.js 8
