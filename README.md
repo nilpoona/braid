@@ -3,35 +3,48 @@
 ## Usage
 
 ```javascript
-const createExecutor = require('braid-cli');
-const executor = createExecutor();
+const createBraid = require('./braid').createBraid;
+const defaultTaskData = require('./braid').defaultTaskData;
+const braid = createBraid();
 
-const taskData = [
-  {
+process.on('unhandledRejection', console.dir);
+
+braid.addTaskData({
     name: 'echo start message',
     message: 'start.',
-  },
-  {
-    name: 'enter number',
-    stdin: true, //Obtain values from standard input.
-    message: 'Please enter one of numbers from 1 to 4.',
-    validate: {
-      logic: (str) => [1, 2, 3, 4].indexOf(parseInt(str, 10)) !== -1, //Input value verification logic
-      message: 'Please enter a number from 1 to 4',
-    },
-    task: (str) => parseInt(str, 10) + 1,
-  },
-  {
-    name: 'number to string',
-    task: (before) => `number: ${before}`,
-  },
-];
+    })
+    .addTaskData({
+        name: 'enter number',
+        stdin: true, //Obtain values from standard input.
+        message: 'Please enter one of numbers from 1 to 4.',
+        validate: {
+          logic: (str) => [1, 2, 3, 4].indexOf(parseInt(str, 10)) !== -1, //Input value verification logic
+          message: 'Please enter a number from 1 to 4',
+        },
+        task: (str) => {
+            return parseInt(str, 10) + 1;
+        },
+    })
+    .addTaskData({
+        name: 'enter number2',
+        task: (before) => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve(before + 100)
+                }, 200)
+            });
+        },
+    })
+    .addTaskData({
+        name: 'number to string',
+        task: (before) => `number: ${before}`,
+    });
 
-executor.exec(taskData)
-.then((data) => {
-  // {'enter number': n + 1, 'number to string': 'number: ${n}'};
-  console.log(data);
-});
+braid.exec()
+    .then(result => console.log(result))
+    .catch(err => {
+      console.error(err);
+    });
 ```
 
 ## Task Data
