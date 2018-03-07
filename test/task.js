@@ -99,8 +99,6 @@ test('exec', t => {
     };
 
     let task = createTask(data, 0);
-    const echoStub = sinon.stub(task, 'echo').callsFake(() => true);
     task.exec(1);
-    t.true(echoStub.calledOnce);
     t.true(spy.calledOnce);
 });
