@@ -25,10 +25,10 @@
     "linux"
   ],
   "devDependencies": {
-    "ava": "^0.20.0",
-    "sinon": "^2.3.6"
+    "ava": "^1.2.0",
+    "sinon": "^7.2.3"
   },
   "dependencies": {
-    "rxjs": "^5.5.6"
+    "rxjs": "^6.4.0"
   }
 }
