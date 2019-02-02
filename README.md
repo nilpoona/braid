@@ -4,16 +4,15 @@
 
 ```javascript
 const createBraid = require('./braid').createBraid;
-const defaultTaskData = require('./braid').defaultTaskData;
 const braid = createBraid();
 
 process.on('unhandledRejection', console.dir);
 
-braid.addTaskData({
+braid.addTask({
     name: 'echo start message',
     message: 'start.',
     })
-    .addTaskData({
+    .addTask({
         name: 'enter number',
         stdin: true, //Obtain values from standard input.
         message: 'Please enter one of numbers from 1 to 4.',
@@ -25,7 +24,7 @@ braid.addTaskData({
             return parseInt(str, 10) + 1;
         },
     })
-    .addTaskData({
+    .addTask({
         name: 'enter number2',
         task: (before) => {
             return new Promise((resolve) => {
@@ -35,7 +34,7 @@ braid.addTaskData({
             });
         },
     })
-    .addTaskData({
+    .addTask({
         name: 'number to string',
         task: (before) => `number: ${before}`,
     });
@@ -62,4 +61,4 @@ braid.exec()
 ```
 
 ## Support
-node.js 8
+node.js v10.x
