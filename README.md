@@ -3,7 +3,7 @@
 ## Usage
 
 ```javascript
-const createBraid = require('./braid').createBraid;
+const createBraid = require('../lib/braid.js').createBraid;
 const braid = createBraid();
 
 process.on('unhandledRejection', console.dir);
@@ -40,7 +40,12 @@ braid.addTask({
     });
 
 braid.exec()
-    .then(result => console.log(result))
+    .then((results) => {
+        for (result of results) {
+            // task result value
+            console.log(result.value)
+        }
+    })
     .catch(err => {
       console.error(err);
     });
